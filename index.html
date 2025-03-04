@@ -7,74 +7,66 @@
     <meta name="author" content="">
     <title>Sagar Gautam</title>
 
-    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <!-- Bootstrap Core Style CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- FONTAWESOME STYLE CSS -->
+    <!-- FontAwesome Style CSS -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- CUSTOM STYLE CSS -->
+    <!-- Custom Style CSS -->
     <link href="assets/css/style.css" rel="stylesheet" />
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
 
     <!-- NAV SECTION -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Sagar Gautam</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home-sec">HOME</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#project">PROJECTS</a></li>
+            <a class="navbar-brand" href="#">Sagar Gautam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home-sec">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                 </ul>
-                <ul class="social list-inline">                             
-                    <li><a target="_blank" href="https://www.facebook.com/Zzautam/"><i class="fa fa-facebook"></i></a></li> 
+                <ul class="social list-inline ms-3">
+                    <li><a target="_blank" href="https://www.facebook.com/Zzautam/"><i class="fa fa-facebook"></i></a></li>
                     <li><a target="_blank" href="https://www.instagram.com/zzautam/"><i class="fa fa-instagram"></i></a></li>
                     <li><a target="_blank" href="https://scholar.google.com/citations?user=8P4yZa4AAAAJ&hl=en"><i class="fa fa-google-scholar"></i></a></li>		
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
     <!-- END NAV SECTION -->
 
     <!-- HOME SECTION -->
-    <div id="home-sec" class="text-center">
+    <section id="home-sec" class="text-center py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h1>Hello, I'm Sagar</h1>
                     <h3>Research Scholar | Environmental Engineer | Computational Scientist</h3>
-                    <p class="intro-text">
-                        "I use computer simulation models and observation of environmental fluxes to assess the impacts of climate and land use change. My work integrates hydrology, biogeochemistry, climate, and land use to understand the feedback processes and impacts on environmental fluxes."
+                    <p class="lead">
+                        "I use computer simulation models and observation of environmental fluxes to assess the impacts of climate and land use change. My work integrates hydrology, biogeochemistry, climate, and land use to understand feedback processes and impacts on environmental fluxes."
                     </p>
+                    <img src="assets/img/Sagar_Gautam_200pix.jpg" alt="Sagar Gautam" class="rounded-circle img-fluid mb-4">
                 </div>
             </div>
-            <header class="header">
-                <div class="container">
-                    <img class="img-circle" src="assets/img/Sagar_Gautam_200pix.jpg" alt="Sagar Gautam">
-                </div>
-            </header>
         </div>
-    </div>
+    </section>
     <!-- END HOME SECTION -->
 
     <!-- ABOUT SECTION -->
-    <section id="about">
+    <section id="about" class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -100,38 +92,13 @@
     </section>
     <!-- END ABOUT SECTION -->
 
-    <!-- TESTIMONIAL SECTION -->
-    <section id="testimonial">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <h2>What People Say</h2>
-                    <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <p>"Joy in looking and comprehending is nature's most beautiful gift." - Albert Einstein</p>
-                            </div>
-                            <div class="item">
-                                <p>"We have to face the reality of climate change. It is arguably the biggest threat we are facing today." - William Hague</p>
-                            </div>
-                            <div class="item">
-                                <p>"Sunset is still my favorite color, and rainbow is second." - Mattie Stepanek</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END TESTIMONIAL SECTION -->
-
     <!-- PROJECT SECTION -->
-    <section id="project">
+    <section id="projects" class="py-5">
         <div class="container">
-            <h2>Research Projects</h2>
+            <h2 class="text-center mb-4">Research Projects</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="assets/img/ARGONNE.jpg" class="img-responsive img-thumbnail" alt="Argonne National Laboratory">
+                    <img src="assets/img/ARGONNE.jpg" class="img-fluid rounded mb-3" alt="Argonne National Laboratory">
                 </div>
                 <div class="col-md-6">
                     <h3>Quantifying Impacts of Land Use and Climate Change</h3>
@@ -143,7 +110,7 @@
     <!-- END PROJECT SECTION -->
 
     <!-- FOOTER SECTION -->
-    <footer>
+    <footer class="bg-dark text-white py-4">
         <div class="container text-center">
             <p>2020 www.sagargautamphd.com | All Rights Reserved</p>
         </div>
@@ -152,7 +119,7 @@
 
     <!-- JS Scripts -->
     <script src="assets/plugins/jquery-1.10.2.js"></script>
-    <script src="assets/plugins/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap.bundle.min.js"></script>
     <script src="assets/js/custom.js"></script>
 
 </body>
