@@ -1307,3 +1307,16 @@ nav { -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
 .stars-layer,
 .hero::before,
 .hero::after { pointer-events: none; }
+/* Micro-tuning for narrow phones */
+@media (max-width: 480px) {
+  .cosmic-title { font-size: clamp(1.5rem, 6vw, 2.1rem); }
+  .section-title { font-size: clamp(1.25rem, 5vw, 1.8rem); margin-bottom: 28px; }
+  section { padding: 60px 16px; }
+  .about-grid, .mission-grid, .achievements-grid { grid-template-columns: 1fr; gap: 16px; }
+  .hero { min-height: 64vh; padding: 2.25rem 1rem; }
+}
+
+/* Ensure the nav overlay never blocks taps when open/closed */
+.stars-layer, .hero::before, .hero::after { pointer-events: none; }
+
+
