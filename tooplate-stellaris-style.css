@@ -1239,42 +1239,71 @@ https://www.tooplate.com/view/2140-stellaris-research
                 font-size: 0.85rem;
             }
         }
-/* ==== Mobile & medium-screen polish (append at end) ==== */
+/* ==== Mobile & medium-screen polish (replace existing block) ==== */
 
-/* Make media fully responsive everywhere */
+/* Media should never overflow */
 img, svg, video { max-width: 100%; height: auto; display: block; }
 
-/* Prefer-reduced-motion accessibility */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Smooth step-down between desktop (≥1200), tablet (≤1024) and phone (≤768) */
+/* ---------- Tablet step (≤1024px) ---------- */
 @media (max-width: 1024px) {
-  /* About & achievements get a comfy 2–3 col step before collapsing on phones */
+  /* So the layout doesn’t jump straight 4→1 cols */
   .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .achievements-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  section { padding: 100px 32px; } /* slightly tighter than desktop */
 }
 
-/* Extra mobile refinements beyond your existing 768px rules */
+/* ---------- Phone polish (≤880px) ---------- */
 @media (max-width: 880px) {
-  /* Slightly smaller hero + headings to avoid wrapping on narrow phones */
-  .hero { min-height: 56vh; padding: 2rem 1rem; }
-  .cosmic-title { font-size: clamp(1.8rem, 7vw, 2.8rem); letter-spacing: 2px; }
-  .subtitle { font-size: clamp(1rem, 3.5vw, 1.15rem); letter-spacing: 2px; }
+  /* Navigation: vertical list, comfy tap targets */
+  .mobile-menu-toggle { display: flex; }
+  .nav-container { padding: 12px 20px; }
+  nav ul { flex-direction: column; gap: 0; padding: 20px; }
+  nav ul li { padding: 14px 0; border-bottom: 1px solid rgba(139,92,246,0.1); }
+  nav ul li:last-child { border-bottom: none; }
 
-  /* Ensure contact inputs always stretch nicely */
+  /* Hero: avoid 100vh issues on mobile, scale type down */
+  .hero { min-height: 70vh; height: auto; padding: 3rem 1rem; margin-top: 70px; }
+  .cosmic-title { font-size: clamp(1.6rem, 6vw, 2.4rem); letter-spacing: 2px; }
+  .subtitle { font-size: clamp(0.95rem, 3.4vw, 1.1rem); letter-spacing: 2px; }
+
+  /* Section spacing & headings */
+  section { padding: 72px 20px; }
+  .section-title { font-size: clamp(1.4rem, 5.5vw, 2rem); letter-spacing: 2px; margin-bottom: 36px; }
+
+  /* Grids → single column on phones */
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .mission-grid { grid-template-columns: 1fr; gap: 18px; }
+  .equipment-item { width: 120px; height: 120px; font-size: 0.8rem; }
+
+  /* Achievements: 2 cols on most phones */
+  .achievements-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  /* Contact form: full width + comfortable inputs */
+  .contact-form { padding: 28px; }
   .contact-form .form-group input,
-  .contact-form .form-group textarea { width: 100%; }
+  .contact-form .form-group textarea { width: 100%; font-size: 15px; padding: 14px; }
+  .launch-btn { font-size: 14px; padding: 14px 28px; width: 100%; }
 }
 
+/* ---------- Very small phones (≤520px) ---------- */
 @media (max-width: 520px) {
-  /* Achievements: 1 column on very small phones */
   .achievements-grid { grid-template-columns: 1fr; }
 }
 
 /* iOS/Safari backdrop reliability */
 nav { -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
 
-/* Decorative layers don’t block taps */
-.stars-layer { pointer-events: none; }
+/* Decorative layers shouldn’t intercept taps */
+.stars-layer,
+.hero::before,
+.hero::after { pointer-events: none; }
