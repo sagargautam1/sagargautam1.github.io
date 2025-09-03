@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aquaterra Research — Dr. Sagar Gautam | Soil Carbon, Hydrology & Climate</title>
+  <meta name="description" content="Dr. Sagar Gautam — Senior Member of Technical Staff (Environmental Engineer) at Sandia National Laboratories. Soil biogeochemistry, hydrology, climate extremes, bioenergy, Earth System Models, and machine learning." />
+  <link rel="canonical" href="https://www.sagargautamphd.com/" />
+
+  <!-- Social cards -->
+  <meta property="og:title" content="Dr. Sagar Gautam — Soil Carbon, Hydrology & Climate" />
+  <meta property="og:description" content="Research on soil carbon dynamics, hydrologic extremes, bioenergy systems, and climate-land interactions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.sagargautamphd.com/" />
+  <meta property="og:image" content="https://www.sagargautamphd.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dr. Sagar Gautam — Soil Carbon, Hydrology & Climate" />
+  <meta name="twitter:description" content="Research on soil carbon dynamics, hydrologic extremes, bioenergy systems, and climate-land interactions." />
+  <meta name="twitter:image" content="https://www.sagargautamphd.com/og-image.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- THEME: TerraHydro (earth + water, science-forward) -->
+  <style>
+    :root{
+      /* Palette tuned to soil, vegetation, water, climate highlights */
+      --soil-900:#3e2f22;
+      --soil-700:#5a4633;
+      --soil-500:#8b5e34;
+      --veg-600:#2e7d32;
+      --veg-400:#4caf50;
+      --water-700:#155e91;
+      --water-500:#1e88e5;
+      --water-300:#64b5f6;
+      --sky-50:#f6fbff;
+      --sand-50:#fbf7f2;
+      --amber-500:#f59e0b;
+      --rose-400:#fb7185;
+      --ink:#0f172a;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --ring: 0 0 0 3px rgba(30,136,229,.25);
+
+      --radius: 18px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 8px 24px rgba(16,24,40,.14);
+      --shadow-lg: 0 24px 60px rgba(16,24,40,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:linear-gradient(180deg,var(--sky-50),#eef6ff 40%, #eef4f1 80%, #faf7f3);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:var(--water-700); text-decoration:none}
+    a:hover{opacity:.9}
+
+    /* Global layout */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(120%) blur(8px);}
+    nav{border-bottom:1px solid #e5e7eb; background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.75));}
+    .nav-container{max-width:1120px; margin:0 auto; padding: .75rem 1rem; display:flex; align-items:center; justify-content:space-between;}
+    .logo-container{display:flex; align-items:center; gap:.625rem; font-weight:700; letter-spacing:.04em; color:var(--soil-900)}
+    .logo-text{font-family:Unbounded,Inter,sans-serif; font-size:1.1rem}
+    .nav-menu ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0}
+    .nav-menu a{display:inline-flex; padding:.5rem .75rem; border-radius:999px; color:#0f172a}
+    .nav-menu a:hover{background:#f1f5f9}
+    .mobile-menu-toggle{display:none}
+
+    /* HERO */
+    .hero{position:relative; isolation:isolate; min-height:70vh; display:grid; place-items:center; overflow:hidden;}
+    .hero::before{ /* topographic lines */
+      content:""; position:absolute; inset:-20% -10% auto -10%; height:120%; background:
+        radial-gradient(60% 40% at 20% 10%, rgba(100,181,246,.3), transparent 60%),
+        radial-gradient(40% 30% at 80% 10%, rgba(46,125,50,.25), transparent 70%),
+        linear-gradient(180deg, rgba(139,94,52,.12), transparent 40%);
+      z-index:-2;
+    }
+    .contours{position:absolute; inset:0; z-index:-1; opacity:.6}
+
+    .cosmic-title{ /* now earth-forward :) */
+      font-family:Unbounded,Inter,sans-serif; font-weight:800; letter-spacing:.06em; margin:0; text-align:center;
+      font-size:clamp(2rem, 6vw, 4rem); color:var(--soil-900);
+      text-shadow:0 1px 0 rgba(255,255,255,.75);
+    }
+    .subtitle{margin:.35rem 0; text-align:center; color:var(--muted)}
+    .hero-cta{margin-top:1rem; display:flex; gap:.75rem; justify-content:center}
+    .btn{border:none; padding:.7rem 1rem; border-radius:999px; cursor:pointer; font-weight:600}
+    .btn-primary{background:linear-gradient(135deg,var(--water-500), var(--veg-600)); color:white; box-shadow:var(--shadow-md)}
+    .btn-outline{background:transparent; border:1px solid #cbd5e1}
+
+    /* Section shells */
+    .section-title{font-family:Unbounded,Inter,sans-serif; letter-spacing:.05em; margin:0 0 1rem; color:var(--soil-900)}
+    section{max-width:1120px; margin:3rem auto; padding:0 1rem}
+
+    /* Cards */
+    .grid{display:grid; gap:1rem}
+    @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card); border:1px solid #e5e7eb; border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-sm)}
+    .card h4{margin:.25rem 0 .35rem; font-weight:700}
+    .status{display:inline-flex; align-items:center; gap:.4rem; font-size:.85rem; color:var(--soil-700)}
+    .dot{width:.5rem; height:.5rem; border-radius:999px; background:var(--amber-500)}
+
+    /* Metrics */
+    .metrics{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:.75rem}
+    .metric{background:linear-gradient(180deg, #fff, #f8fafc); border:1px solid #e5e7eb; border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-sm); text-align:center}
+    .metric .num{font-family:Unbounded; font-weight:800; font-size:1.4rem; color:var(--water-700)}
+    .metric .lbl{font-size:.9rem; color:var(--muted)}
+
+    /* Tabs */
+    .tabs{display:flex; gap:.5rem; flex-wrap:wrap}
+    .tab{all:unset; padding:.5rem .8rem; border-radius:999px; border:1px solid #cbd5e1; cursor:pointer}
+    .tab[aria-selected="true"]{background:linear-gradient(135deg,#e6f2ff,#eef7f1); color:#0f172a; border-color:#94a3b8}
+    .panels{margin-top:1rem}
+
+    /* Equipment */
+    .equip{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.6rem}
+    @media(min-width:720px){.equip{grid-template-columns:repeat(3, minmax(0,1fr))}}
+    .chip{background:#fff; border:1px dashed #cbd5e1; border-radius:12px; padding:.6rem .8rem; text-align:center}
+
+    /* Footer */
+    footer{background:#0b1220; color:#e5e7eb; margin-top:4rem}
+    .foot{max-width:1120px; margin:0 auto; padding:2rem 1rem; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem}
+    footer a{color:#c7d2fe}
+    .foot small{color:#9aa3b2}
+
+    /* Accessibility helpers (kept from your original) */
+    .sr-only { position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+    .skip-link { position:absolute; left:0; top:0; transform:translateY(-120%); background:#111; color:#fff; padding:.5rem .75rem; z-index:9999; border-radius:.375rem; }
+    .skip-link:focus { transform:translateY(0); }
+    :where(a,button,input,textarea).focus-visible, :where(a,button,input,textarea):focus-visible { outline:2px solid var(--water-500); outline-offset:3px; }
+    @media (prefers-reduced-motion: reduce){ .contours{display:none} }
+
+    /* Simple topographic SVG stroke animation */
+    .dashdraw path{stroke-dasharray:4 6; animation:flow 10s linear infinite}
+    @keyframes flow{to{stroke-dashoffset:-100}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <nav aria-label="Primary">
+      <div class="nav-container">
+        <a href="#home" class="logo-container" aria-label="Home">
+          <!-- New logo: soil profile + water table + sun cue -->
+          <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#1e88e5"/>
+                <stop offset="1" stop-color="#4caf50"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="60" height="60" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+            <path d="M6 36 C 18 28, 46 28, 58 36 L 58 50 L 6 50 Z" fill="#8b5e34"/>
+            <rect x="6" y="36" width="52" height="6" fill="#1e88e5"/>
+            <circle cx="50" cy="16" r="6" fill="#f59e0b"/>
+            <path d="M10 30 C 20 22, 44 22, 54 30" stroke="url(#g1)" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="logo-text">Aquaterra</span>
+        </a>
+        <div class="nav-menu" id="nav-menu">
+          <ul role="menubar" aria-label="Main">
+            <li role="none"><a role="menuitem" href="#home">HOME</a></li>
+            <li role="none"><a role="menuitem" href="#about">ABOUT</a></li>
+            <li role="none"><a role="menuitem" href="#projects">PROJECTS</a></li>
+            <li role="none"><a role="menuitem" href="#publications">PUBLICATIONS</a></li>
+            <li role="none"><a role="menuitem" href="#tools">TOOLS & MODELS</a></li>
+            <li role="none"><a role="menuitem" href="#contact">CONTACT</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu-toggle">
+          <button id="mobile-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+            <span aria-hidden="true">☰</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Hero">
+      <!-- Topographic contour overlay (replaces starfield) -->
+      <svg class="contours dashdraw" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#90caf9" stroke-opacity=".6">
+          <path d="M0,120 C300,60 900,180 1200,100"/>
+          <path d="M0,220 C350,160 800,260 1200,210"/>
+          <path d="M0,320 C280,300 880,360 1200,320"/>
+          <path d="M0,420 C340,420 860,420 1200,430"/>
+        </g>
+        <g fill="none" stroke="#a5d6a7" stroke-opacity=".5">
+          <path d="M0,80 C320,40 840,140 1200,90"/>
+          <path d="M0,280 C260,240 860,300 1200,280"/>
+        </g>
+      </svg>
+
+      <div>
+        <h1 class="cosmic-title">DR. SAGAR GAUTAM</h1>
+        <p class="subtitle">Senior Member of Technical Staff · Environmental Engineer — Sandia National Laboratories</p>
+        <p class="subtitle" style="opacity:.9">Soil Carbon • Hydrology • Climate Extremes • Bioenergy • ESMs • Machine Learning</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects">Explore Projects</a>
+          <a class="btn btn-outline" href="#publications">View Publications</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">RESEARCH PROFILE</h2>
+      <div class="grid" style="grid-template-columns: 1.2fr .8fr; gap:1rem">
+        <div class="card">
+          <h3 style="margin-top:0">Advancing Soil–Climate Intelligence for a Resilient Bioeconomy</h3>
+          <p>I develop integrated modeling approaches that fuse process-based models, Earth System Models (E3SM/CESM), and machine learning to quantify climate impacts on soils, water resources, greenhouse gases, and bioenergy supply chains. My work spans watershed to continental scales, with an emphasis on benchmarking model predictions against observations and informing decision-support tools for sustainable land management.</p>
+          <p>Based at Sandia National Laboratories (Livermore, CA), I collaborate across national labs and universities to improve representation of soil processes in large-scale models and to evaluate climate extremes, drought, and land-use transitions affecting soil organic carbon.</p>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr; gap:1rem">
+          <div class="card" style="display:flex; gap:.75rem; align-items:flex-start">
+            <span aria-hidden="true" style="font-size:1.4rem">🧪</span>
+            <div>
+              <h4>Soil Biogeochemistry</h4>
+              <p style="margin:0">Carbon & nitrogen cycling, GHG fluxes, microbial processes, and observational benchmarks for model improvement.</p>
+            </div>
+          </div>
+          <div class="card" style="display:flex; gap:.75rem; align-items:flex-start">
+            <span aria-hidden="true" style="font-size:1.4rem">🌊</span>
+            <div>
+              <h4>Hydrology & Extremes</h4>
+              <p style="margin:0">Downscaling CMIP6, drought metrics, flood/runoff simulation, and ecohydrologic responses under climate change.</p>
+            </div>
+          </div>
+          <div class="card" style="display:flex; gap:.75rem; align-items:flex-start">
+            <span aria-hidden="true" style="font-size:1.4rem">🤖</span>
+            <div>
+              <h4>ML & Decision Tools</h4>
+              <p style="margin:0">Reduced-order models, ensemble ML for SOC mapping, and LCA-linked analytics for bioenergy systems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics" role="list" aria-label="Key metrics" style="margin-top:1rem">
+        <div class="metric" role="listitem" aria-label="10 first-author papers (total multi-author publications > 20)">
+          <div class="num">10+</div>
+          <div class="lbl">First‑Author Papers</div>
+        </div>
+        <div class="metric" role="listitem" aria-label="DOE projects — PI and Co‑PI">
+          <div class="num">$1.6M+</div>
+          <div class="lbl">DOE‑Funded Projects</div>
+        </div>
+        <div class="metric" role="listitem" aria-label="Modeling & data years">
+          <div class="num">10+</div>
+          <div class="lbl">Years in Modeling</div>
+        </div>
+        <div class="metric" role="listitem" aria-label="Teaching & mentoring roles">
+          <div class="num">4</div>
+          <div class="lbl">University Courses (TA/Co‑Instructor)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">PROJECT OPERATIONS</h2>
+      <div class="tabs" role="tablist" aria-label="Project categories">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-active" id="t-active" data-target="p-active">Active Research</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-ml" id="t-ml" data-target="p-ml">ML & Reduced‑Order</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-ext" id="t-ext" data-target="p-ext">Drought & Extremes</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-bio" id="t-bio" data-target="p-bio">Bioenergy & LCA</button>
+      </div>
+
+      <div class="panels">
+        <div id="p-active" role="tabpanel" aria-labelledby="t-active">
+          <div class="grid">
+            <article class="card">
+              <h4>Soil Carbon Transitions (PI)</h4>
+              <p>Machine‑learning estimation of land‑use transitions needed across CONUS to buffer climate‑induced soil carbon emissions.</p>
+              <span class="status" aria-label="Status: Active"><span class="dot"></span>DOE • 2023–present</span>
+            </article>
+            <article class="card">
+              <h4>Microbial Dynamics in ESMs (Co‑PI)</h4>
+              <p>Representing soil microbial processes in Earth System Models to evaluate impacts of climate extremes on dryland SOC dynamics.</p>
+              <span class="status" aria-label="Status: Active"><span class="dot"></span>DOE • 2023–present</span>
+            </article>
+            <article class="card">
+              <h4>SOC Loss Under Warming</h4>
+              <p>Benchmarking ML projections against ESMs suggests CONUS may lose substantial SOC by 2100, guiding mitigation pathways.</p>
+              <span class="status" aria-label="Status: Ongoing"><span class="dot"></span>Research</span>
+            </article>
+          </div>
+        </div>
+
+        <div id="p-ml" role="tabpanel" aria-labelledby="t-ml" hidden>
+          <div class="grid">
+            <article class="card">
+              <h4>Reduced‑Order SOC & Yield</h4>
+              <p>Fast surrogates for DAYCENT/ESM outputs to predict SOC dynamics and bioenergy crop yields at policy‑relevant scales.</p>
+              <span class="status" aria-label="Status: Development"><span class="dot"></span>Development</span>
+            </article>
+            <article class="card">
+              <h4>Circumpolar SOC Heterogeneity</h4>
+              <p>Ensemble ML improves mapping of surface SOC stocks in data‑limited northern regions for model benchmarking.</p>
+              <span class="status" aria-label="Status: Published"><span class="dot"></span>Published</span>
+            </article>
+          </div>
+        </div>
+
+        <div id="p-ext" role="tabpanel" aria-labelledby="t-ext" hidden>
+          <div class="grid">
+            <article class="card">
+              <h4>CONUS Drought Projections</h4>
+              <p>Downscaled CMIP6 indicates increased drought and extreme events across the U.S. under high‑emission scenarios.</p>
+              <span class="status" aria-label="Status: Published"><span class="dot"></span>Published</span>
+            </article>
+            <article class="card">
+              <h4>Watershed Extremes</h4>
+              <p>Ecohydrologic modeling for Goodwater Creek: ensemble approaches to future runoff and drought occurrence.</p>
+              <span class="status" aria-label="Status: Published"><span class="dot"></span>Published</span>
+            </article>
+          </div>
+        </div>
+
+        <div id="p-bio" role="tabpanel" aria-labelledby="t-bio" hidden>
+          <div class="grid">
+            <article class="card">
+              <h4>SAF Viability & Carbon Farming</h4>
+              <p>Assessing how soil carbon payments and multifunctional landscapes enable carbon‑negative, cost‑effective biofuels.</p>
+              <span class="status" aria-label="Status: Published"><span class="dot"></span>Published</span>
+            </article>
+            <article class="card">
+              <h4>JBEI Recognition</h4>
+              <p>Most Impactful Publication Award (2024) for advancing bioenergy and environmental sustainability research.</p>
+              <span class="status" aria-label="Status: Award"><span class="dot"></span>Award</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS HIGHLIGHTS -->
+    <section id="publications" aria-labelledby="pubs-title">
+      <h2 class="section-title" id="pubs-title">SELECTED PUBLICATIONS</h2>
+      <div class="grid">
+        <article class="card">
+          <h4>Permafrost Active Layer (Alaska)</h4>
+          <p>Machine‑learning & process‑based comparison for spatiotemporal ALT variation. <em>Scientific Reports</em> (rev., 2025).</p>
+        </article>
+        <article class="card">
+          <h4>Reduced‑Order Models for SOC & Yield</h4>
+          <p>ML surrogates for bioenergy crops. <em>Carbon Capture Science & Technology</em> (2025).</p>
+        </article>
+        <article class="card">
+          <h4>CONUS Drought & Extremes</h4>
+          <p>High‑emissions scenario analysis of future extremes. <em>Scientific Reports</em> (2023).</p>
+        </article>
+        <article class="card">
+          <h4>SAF Viability</h4>
+          <p>Impacts of carbon farming on sustainable aviation fuel. <em>PNAS</em> (2023).</p>
+        </article>
+      </div>
+      <p style="text-align:center; margin-top:1rem; opacity:.9">Full list available on Google Scholar and CV.</p>
+    </section>
+
+    <!-- TOOLS & MODELS -->
+    <section id="tools" aria-labelledby="tools-title">
+      <h2 class="section-title" id="tools-title">TOOLS & MODELS</h2>
+      <div class="equip" role="list">
+        <div class="chip" role="listitem"><span>DAYCENT • DNDC • CropSyst</span></div>
+        <div class="chip" role="listitem"><span>SWAT • APEX • MODFLOW • HEC‑RAS</span></div>
+        <div class="chip" role="listitem"><span>E3SM • CESM (Land Models)</span></div>
+        <div class="chip" role="listitem"><span>Python • R • MATLAB • HPC • GIS</span></div>
+        <div class="chip" role="listitem"><span>SQL • ArcGIS • Open‑source Geo</span></div>
+        <div class="chip" role="listitem"><span>LCA Integration • Decision Support</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">RESEARCH COLLABORATION</h2>
+      <form class="card" method="post" action="/contact" novalidate>
+        <div style="display:grid; gap: .75rem">
+          <label class="sr-only" for="name">Your Name</label>
+          <input id="name" name="name" type="text" placeholder="Your Name" autocomplete="name" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none" />
+
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none" />
+
+          <label class="sr-only" for="message">Proposal or Collaboration Inquiry</label>
+          <textarea id="message" name="message" rows="5" placeholder="Proposal or Collaboration Inquiry" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none"></textarea>
+
+          <button type="submit" class="btn btn-primary" style="justify-self:start">SUBMIT</button>
+          <p aria-live="polite" class="sr-only" id="form-status"></p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div aria-labelledby="areas">
+        <h3 id="areas" style="margin-top:0">Research Areas</h3>
+        <ul>
+          <li><a href="#projects">Soil Carbon & GHG</a></li>
+          <li><a href="#projects">Hydrology & Extremes</a></li>
+          <li><a href="#tools">Earth System Models</a></li>
+          <li><a href="#publications">Bioenergy & LCA</a></li>
+          <li><a href="#tools">ML & Surrogate Modeling</a></li>
+        </ul>
+      </div>
+      <div aria-labelledby="links">
+        <h3 id="links" style="margin-top:0">Professional Links</h3>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?user=8P4yZa4AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.sagargautamphd.com" target="_blank" rel="noopener">Personal Website</a></li>
+          <li><a href="mailto:sgautam@sandia.gov">sgautam@sandia.gov</a></li>
+        </ul>
+      </div>
+      <div aria-labelledby="awards">
+        <h3 id="awards" style="margin-top:0">Honors</h3>
+        <p style="color:#dbeafe; margin-bottom:15px;">Most Impactful Publication Award (JBEI, 2024)</p>
+        <small>© 2025 Dr. Sagar Gautam — Research Portfolio</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    (function(){
+      const toggle=document.getElementById('mobile-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!toggle||!menu) return;
+      function sync(){
+        const w=window.innerWidth; menu.style.display = w<880? 'none':'block';
+      }
+      toggle.addEventListener('click',()=>{
+        if(menu.style.display==='block'){menu.style.display='none';}
+        else{menu.style.display='block';}
+      });
+      window.addEventListener('resize',sync); sync();
+    })();
+
+    // Accessible tabs
+    (function(){
+      const tabs=[...document.querySelectorAll('.tab[role="tab"]')];
+      const panels=[...document.querySelectorAll('[role="tabpanel"]')];
+      if(!tabs.length) return;
+      function select(targetId){
+        tabs.forEach(t=>t.setAttribute('aria-selected', String(t.dataset.target===targetId)));
+        panels.forEach(p=>{
+          const isMatch = p.id===targetId; p.toggleAttribute('hidden', !isMatch);
+        });
+      }
+      tabs.forEach(t=>{
+        t.addEventListener('click',()=>select(t.dataset.target));
+        t.addEventListener('keydown',e=>{
+          const i=tabs.indexOf(document.activeElement); if(i<0) return;
+          if(e.key==='ArrowRight'){e.preventDefault(); const n=tabs[(i+1)%tabs.length]; n.focus(); select(n.dataset.target);} 
+          else if(e.key==='ArrowLeft'){e.preventDefault(); const p=tabs[(i-1+tabs.length)%tabs.length]; p.focus(); select(p.dataset.target);} 
+        });
+      });
+    })();
+
+    // Simple form validation feedback
+    (function(){
+      const form=document.querySelector('form');
+      const status=document.getElementById('form-status');
+      if(!form||!status) return;
+      form.addEventListener('submit',(e)=>{
+        if(!form.checkValidity()){ e.preventDefault(); status.textContent='Please complete all required fields.'; status.classList.remove('sr-only'); }
+      });
+    })();
+  </script>
+</body>
+</html>
