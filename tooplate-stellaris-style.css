@@ -1239,199 +1239,78 @@ https://www.tooplate.com/view/2140-stellaris-research
                 font-size: 0.85rem;
             }
         }
-/* ==== Mobile & medium-screen polish (replace existing block) ==== */
-
-/* Media should never overflow */
-img, svg, video { max-width: 100%; height: auto; display: block; }
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ---------- Tablet step (≤1024px) ---------- */
-@media (max-width: 1024px) {
-  /* So the layout doesn’t jump straight 4→1 cols */
-  .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .achievements-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  section { padding: 100px 32px; } /* slightly tighter than desktop */
-}
-
-/* ---------- Phone polish (≤880px) ---------- */
+        
+        /* ===== Mobile-first polish ===== */
 @media (max-width: 880px) {
-  /* Navigation: vertical list, comfy tap targets */
-  .mobile-menu-toggle { display: flex; }
-  .nav-container { padding: 12px 20px; }
-  nav ul { flex-direction: column; gap: 0; padding: 20px; }
-  nav ul li { padding: 14px 0; border-bottom: 1px solid rgba(139,92,246,0.1); }
-  nav ul li:last-child { border-bottom: none; }
+  /* Show the mobile toggle and collapse menu */
+  .mobile-menu-toggle { display:block; }
+  .nav-menu { display:none; }
+  .nav-menu[data-open="true"] { display:block; }
+  .nav-menu ul { flex-direction: column; gap:.25rem; padding:.5rem 0; }
+  .nav-menu a { padding:.75rem 1rem; }
 
-  /* Hero: avoid 100vh issues on mobile, scale type down */
-  .hero { min-height: 70vh; height: auto; padding: 3rem 1rem; margin-top: 70px; }
-  .cosmic-title { font-size: clamp(1.6rem, 6vw, 2.4rem); letter-spacing: 2px; }
-  .subtitle { font-size: clamp(0.95rem, 3.4vw, 1.1rem); letter-spacing: 2px; }
+  /* Tighter header on phones */
+  .nav-container { padding:.5rem .75rem; }
 
-  /* Section spacing & headings */
-  section { padding: 72px 20px; }
-  .section-title { font-size: clamp(1.4rem, 5.5vw, 2rem); letter-spacing: 2px; margin-bottom: 36px; }
+  /* Hero sizing & typography */
+  .hero { min-height: 56vh; padding: 2.25rem 1rem; }
+  .cosmic-title { font-size: clamp(1.6rem, 7.5vw, 2.4rem); letter-spacing:.04em; }
+  .subtitle { font-size: .95rem; }
 
-  /* Grids → single column on phones */
-  .about-grid { grid-template-columns: 1fr; gap: 24px; }
-  .mission-grid { grid-template-columns: 1fr; gap: 18px; }
-  .equipment-item { width: 120px; height: 120px; font-size: 0.8rem; }
+  /* Force the ABOUT 2-column area to stack (overrides inline style) */
+  #about > .grid { grid-template-columns: 1fr !important; }
 
-  /* Achievements: 2 cols on most phones */
-  .achievements-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  /* Generic grid sections collapse to 1 column */
+  .grid { grid-template-columns: 1fr !important; }
 
-  /* Contact form: full width + comfortable inputs */
-  .contact-form { padding: 28px; }
-  .contact-form .form-group input,
-  .contact-form .form-group textarea { width: 100%; font-size: 15px; padding: 14px; }
-  .launch-btn { font-size: 14px; padding: 14px 28px; width: 100%; }
+  /* Metrics: 4 → 2 columns */
+  .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+  /* Equipment chips: 3 → 2 columns (then 1 on very small screens) */
+  .equip { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 
-/* ---------- Very small phones (≤520px) ---------- */
 @media (max-width: 520px) {
-  .achievements-grid { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: 1fr; }
+  .equip { grid-template-columns: 1fr; }
 }
 
-/* iOS/Safari backdrop reliability */
-nav { -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+/* Make the contour SVG fully responsive and non-interactive on touch */
+.contours { width:100%; height:100%; pointer-events:none; }
 
-/* Decorative layers shouldn’t intercept taps */
-.stars-layer,
-.hero::before,
-.hero::after { pointer-events: none; }
-/* Micro-tuning for narrow phones */
-@media (max-width: 480px) {
-  .cosmic-title { font-size: clamp(1.5rem, 6vw, 2.1rem); }
-  .section-title { font-size: clamp(1.25rem, 5vw, 1.8rem); margin-bottom: 28px; }
-  section { padding: 60px 16px; }
-  .about-grid, .mission-grid, .achievements-grid { grid-template-columns: 1fr; gap: 16px; }
-  .hero { min-height: 64vh; padding: 2.25rem 1rem; }
-}
+/* Backdrop-filter fallback for Safari/iOS */
+header { -webkit-backdrop-filter: saturate(120%) blur(8px); }
+nav { background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.82)); }
 
-/* Ensure the nav overlay never blocks taps when open/closed */
-.stars-layer, .hero::before, .hero::after { pointer-events: none; }
-/* === Phone fix: Contact block, Footer layout, Metrics spacing === */
+<script>
+  // Mobile nav toggle (accessible + resilient)
+  (function () {
+    const toggle = document.getElementById('mobile-toggle');
+    const menu   = document.getElementById('nav-menu');
+    if (!toggle || !menu) return;
 
-/* 1) CONTACT (mobile comfort) */
-@media (max-width: 880px) {
-  /* Your contact section uses a .card form; tighten padding and radius on phones */
-  #contact .card {
-    padding: 18px;
-    border-radius: 14px;
-    margin-bottom: 28px;          /* add breathing room before the footer */
-  }
-  #contact input,
-  #contact textarea {
-    width: 100%;
-    font-size: 16px;              /* prevents iOS zoom on focus */
-    padding: 14px 16px;
-  }
-  #contact textarea { min-height: 140px; }
-  #contact .btn.btn-primary {
-    width: 100%;
-    padding: 14px 18px;
-    border-radius: 999px;
-    margin-top: 6px;
-  }
-}
+    function applyLayout() {
+      const wide = window.matchMedia('(min-width: 880px)').matches;
+      if (wide) {
+        menu.dataset.open = 'true';                // always visible on desktop
+        toggle.setAttribute('aria-expanded', 'true');
+      } else {
+        if (!menu.dataset.open) menu.dataset.open = 'false'; // default closed on mobile
+        toggle.setAttribute('aria-expanded', menu.dataset.open === 'true' ? 'true' : 'false');
+      }
+    }
 
-/* 2) FOOTER (stack cleanly on phones) */
-@media (max-width: 880px) {
-  /* Your cosmic CSS uses .footer-content grid; force single column on phones */
-  .footer-content {
-    grid-template-columns: 1fr !important;
-    gap: 18px;
-    text-align: left;             /* or center if you prefer */
-  }
-  .footer-section h3 { margin-bottom: 12px; }
-  .footer-section ul { padding-left: 0; }
-  .footer-section li { line-height: 1.5; }
-  .footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 0.9rem;
-  }
-}
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.dataset.open === 'true';
+      menu.dataset.open = String(!isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
 
-/* 3) METRICS row (avoid crowding/clipping) */
-@media (max-width: 880px) {
-  .metrics {
-    grid-template-columns: repeat(2, 1fr) !important;  /* two-up on phones */
-    gap: 10px;
-    margin-top: 14px;                                   /* a bit more space */
-  }
-  .metric {
-    padding: 12px 10px;
-  }
-}
-@media (max-width: 520px) {
-  .metrics { grid-template-columns: 1fr !important; }   /* one-up on very small phones */
-}
-
-/* Make sure decorative layers never steal taps */
-.hero::before, .hero::after { pointer-events: none; }
-/* === Final mobile polish: contact spacing, footer flow, metrics legibility === */
-
-/* 0) Safer anchors & safe-area on iOS */
-html { scroll-padding-top: 84px; }                 /* fixed nav offset for #hash jumps */
-@supports (padding: max(0px)) {
-  body { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
-}
-
-/* 1) CONTACT card – extra breathing room + crisp edges on small screens */
-@media (max-width: 880px) {
-  #contact .card {
-    padding: 18px 16px;
-    margin: 0 0 32px;            /* more space before footer */
-    border-radius: 16px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.08);
-  }
-  #contact input, #contact textarea {
-    font-size: 16px;             /* avoids iOS zoom */
-    width: 100%;
-  }
-  #contact .btn.btn-primary {
-    width: 100%;
-    padding: 14px 18px;
-    margin-top: 8px;
-  }
-}
-
-/* 2) METRICS – keep numbers from crowding/clipping */
-@media (max-width: 880px) {
-  .metrics { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
-  .metric { padding: 12px; }
-  .metric .num { font-size: clamp(1rem, 6vw, 1.5rem); white-space: nowrap; }
-  .metric .lbl { font-size: .9rem; line-height: 1.3; }
-}
-@media (max-width: 520px) {
-  .metrics { grid-template-columns: 1fr !important; }
-}
-
-/* 3) FOOTER – single column + nicer wrapping on phones */
-@media (max-width: 880px) {
-  .footer-content { grid-template-columns: 1fr !important; gap: 18px; }
-  .footer-section h3 { margin-bottom: 10px; }
-  .footer-section ul { padding-left: 0; }
-  .footer-section li { line-height: 1.5; }
-  .footer-bottom { text-align: center; padding-top: 20px; font-size: .9rem; }
-  /* prevent awkward long-word breaks */
-  .footer-section, .footer-section a, .footer-section li { overflow-wrap: anywhere; hyphens: auto; }
-}
-
-/* 4) Decorative layers never block taps */
-.hero::before, .hero::after, .stars-layer { pointer-events: none; }
-
-
-
+    // Initialize + respond to resizes
+    applyLayout();
+    window.addEventListener('resize', applyLayout);
+  })();
+</script>
 
 
 
