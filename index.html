@@ -378,25 +378,34 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-title">
-      <h2 class="section-title" id="contact-title">RESEARCH COLLABORATION</h2>
-      <form class="card" method="post" action="/contact" novalidate>
-        <div style="display:grid; gap: .75rem">
-          <label class="sr-only" for="name">Your Name</label>
-          <input id="name" name="name" type="text" placeholder="Your Name" autocomplete="name" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none" />
+     <!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-title">
+  <h2 class="section-title" id="contact-title">RESEARCH COLLABORATION</h2>
+  <p style="margin-bottom:1rem; color:#334155">
+    For proposals or collaboration inquiries, please reach me at 
+    <a href="mailto:sgautam@sandia.gov">sgautam@sandia.gov</a><br/>
+    Senior Member of Technical Staff, Environmental Engineer — Sandia National Laboratories
+  </p>
 
-          <label class="sr-only" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none" />
+  <form class="card" method="POST" action="https://formspree.io/f/YOUR_FORMSPREE_ID" novalidate>
+    <div style="display:grid; gap:.75rem">
+      <label class="sr-only" for="name">Your Name</label>
+      <input id="name" name="name" type="text" placeholder="Your Name" required
+             style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline:none" />
 
-          <label class="sr-only" for="message">Proposal or Collaboration Inquiry</label>
-          <textarea id="message" name="message" rows="5" placeholder="Proposal or Collaboration Inquiry" required style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline: none"></textarea>
+      <label class="sr-only" for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="Your Email" required
+             style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline:none" />
 
-          <button type="submit" class="btn btn-primary" style="justify-self:start">SUBMIT</button>
-          <p aria-live="polite" class="sr-only" id="form-status"></p>
-        </div>
-      </form>
-    </section>
+      <label class="sr-only" for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Proposal or Collaboration Inquiry" required
+                style="padding:.7rem .9rem; border:1px solid #cbd5e1; border-radius:12px; outline:none"></textarea>
+
+      <button type="submit" class="btn btn-primary" style="justify-self:start">SUBMIT</button>
+      <p aria-live="polite" id="form-status" style="font-size:.9rem; color:#065f46"></p>
+    </div>
+  </form>
+</section>
   </main>
 
   <footer>
@@ -476,4 +485,5 @@
   </script>
 </body>
 </html>
+
 
