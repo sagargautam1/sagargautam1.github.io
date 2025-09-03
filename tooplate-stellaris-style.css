@@ -1238,4 +1238,87 @@ https://www.tooplate.com/view/2140-stellaris-research
             .footer-bottom {
                 font-size: 0.85rem;
             }
+
         }
+/***** ====== RESPONSIVE & NAV CONSOLIDATION PATCH ====== *****/
+
+/* Base constraints that help everywhere */
+img, svg, video { max-width: 100%; height: auto; }
+section { width: 100%; }
+
+/* Prefer reduced motion for users who request it */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* --- Unify mobile nav behavior ---
+   We’ll control visibility via [data-open="true"] on .nav-menu.
+   Keep compatibility with your old .active class too. */
+@media (max-width: 880px) {
+  .mobile-menu-toggle { display: flex; }
+  .nav-menu { 
+    display: none; 
+    position: absolute; top: 100%; left: 0; width: 100%;
+    background: rgba(15, 15, 35, 0.98);
+    border-top: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 15px 40px rgba(15, 15, 35, 0.9);
+  }
+  .nav-menu[data-open="true"],
+  .nav-menu.active { /* .active kept for backwards compatibility */
+    display: block;
+  }
+  nav ul { flex-direction: column; gap: 0; padding: 20px; }
+  nav ul li { padding: 14px 0; border-bottom: 1px solid rgba(139, 92, 246, 0.1); }
+  nav ul li:last-child { border-bottom: none; }
+  .nav-container { padding: 12px 20px; }
+}
+
+/* --- Typography/hero scaling for phones --- */
+@media (max-width: 880px) {
+  .hero { min-height: 56vh; padding: 2rem 1rem; margin-top: 70px; }
+  .cosmic-title { font-size: clamp(1.8rem, 7vw, 2.8rem); letter-spacing: 2px; }
+  .subtitle     { font-size: clamp(1rem, 3.5vw, 1.15rem); letter-spacing: 2px; }
+  .section-title{ font-size: clamp(1.6rem, 6vw, 2.4rem); letter-spacing: 2px; margin-bottom: 40px; }
+}
+
+/* --- About / cards / achievements --- */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .achievements-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+@media (max-width: 768px) {
+  .about-section { padding: 40px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .achievements-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+/* --- Missions (tabs + cards) --- */
+@media (max-width: 880px) {
+  .missions-container { padding: 0 20px; }
+  .mission-tabs { flex-direction: column; gap: 8px; padding: 8px; }
+  .mission-grid { grid-template-columns: 1fr; gap: 18px; }
+  .mission-card { padding: 24px; }
+}
+
+/* --- Equipment tiles --- */
+@media (max-width: 880px) {
+  .equipment-item { width: 120px; height: 120px; font-size: 0.8rem; }
+}
+
+/* --- Contact form inputs full width on phones --- */
+@media (max-width: 880px) {
+  .contact-form { padding: 28px; }
+  .form-group input, .form-group textarea { width: 100%; font-size: 15px; padding: 14px; }
+  .launch-btn { font-size: 14px; padding: 14px 28px; }
+}
+
+/* --- Footer stacks nicely --- */
+@media (max-width: 880px) {
+  .footer-content { grid-template-columns: 1fr; text-align: center; }
+}
+
+/* --- iOS/Safari backdrop filter reliability --- */
+nav { -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+
+/* If you are using a 'contours' or large decorative SVG layer, make sure touch doesn't snag it */
+.contours, .stars-layer { pointer-events: none; }
