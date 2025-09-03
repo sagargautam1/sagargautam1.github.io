@@ -485,6 +485,48 @@
   </script>
 </body>
 </html>
+<script>
+  // Mobile nav toggle for your existing ".nav-menu.active" CSS
+  (function () {
+    const toggleWrap = document.querySelector('.mobile-menu-toggle'); // the container with 3 bars
+    const menu = document.querySelector('.nav-menu');
+    if (!toggleWrap || !menu) return;
+
+    // Create an accessible button if you currently use spans/divs
+    let btn = toggleWrap.querySelector('#mobile-toggle');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'mobile-toggle';
+      btn.setAttribute('aria-controls', 'nav-menu');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.style.all = 'unset';
+      btn.style.cursor = 'pointer';
+      btn.innerHTML = '☰';
+      toggleWrap.appendChild(btn);
+    }
+
+    function sync() {
+      const wide = matchMedia('(min-width: 769px)').matches;
+      if (wide) {
+        menu.classList.add('active');         // show on desktop
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.remove('active');      // closed by default on mobile
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('active'); // uses your .nav-menu.active CSS
+      toggleWrap.classList.toggle('active', isOpen);  // animates the 3 bars if you use that style
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    sync();
+    addEventListener('resize', sync);
+  })();
+</script>
+
 
 
 
