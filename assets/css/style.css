@@ -305,6 +305,22 @@ border-top: 1px solid #d6d6d6;
         font-size:28px ;
     }
 }
+/* === Responsive Fix for Stats Boxes === */
+@media (max-width: 768px) {
+  .num {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .lbl {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+
+
 
 
 
