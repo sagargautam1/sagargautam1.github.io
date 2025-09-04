@@ -1311,6 +1311,21 @@ nav { background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,25
     window.addEventListener('resize', applyLayout);
   })();
 </script>
+/* === Responsive Fix for Stats Boxes === */
+@media (max-width: 768px) {
+  .num {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .lbl {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+
 
 
 
